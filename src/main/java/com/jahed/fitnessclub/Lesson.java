@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class Lesson {
     int capacity;
-    public String name,day;
+    public String type,day;
     public double price;
 
-    public Lesson(String name, String day, double price){
-        this.name=name;
+    public Lesson(String type, String day, double price){
+        this.type=type;
         this.day=day;
         this.price=price;
         this.capacity=5;
@@ -18,32 +18,33 @@ public class Lesson {
     public static void ReviewRating(){
         Scanner input = new Scanner(System.in);
         int bookingId = BookingManager.GetBookingId();
-        LessonRating lessonRating = new LessonRating();
-        System.out.println("Enter your review");
+        LessonRatingReview lessonRating = new LessonRatingReview();
+        System.out.println("Enter Your Review");
         lessonRating.review = input.nextLine();
-        System.out.println("Rate the lesson from 1 to 5");
+        System.out.println("Rate the Lesson from 1 to 5");
         lessonRating.rating = input.nextInt();
-        lessonRating.reviewId=LessonRating.allRating.size()+1;
+        lessonRating.bookingId=bookingId;
+        lessonRating.reviewId= LessonRatingReview.allRating.size()+1;
         lessonRating.allRating.add(lessonRating);
     }
     public static void LessonReport(){
         List<String>lessonList=new ArrayList<String>();
         lessonList.add("Spin");
         lessonList.add("Yoga");
-        lessonList.add("Bodysculpt");
-        lessonList.add("Aquacise");
         lessonList.add("Zumba");
+        lessonList.add("Bodysculpt");
+
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter month number 1 or 2");
         int month=input.nextInt();
-        System.out.println("Lesson name\t day \t total customer \t avg rating");
+        System.out.println("Lesson\t day \tCustomer\tAvgRating\tReview");
         int totalCustomer=0;
         List<Timetable>saturdayTimeTable=new ArrayList<Timetable>();
         List<Timetable>sundayTimeTable=new ArrayList<Timetable>();
-        for (String name:lessonList){
-            for (Timetable timeTable: Timetable.allTimetable){
-                if(timeTable.month==month&&timeTable.lesson.name.equals(name)){
+        for (String type: lessonList){
+            for (Timetable timeTable: Timetable.allTimetables){
+                if(timeTable.month==month && timeTable.lesson.type.equals(type)){
                     totalCustomer=5-timeTable.lesson.capacity+totalCustomer;
                     if (timeTable.lesson.day == "Saturday") {
                         saturdayTimeTable.add(timeTable);
@@ -52,19 +53,19 @@ public class Lesson {
                     }
                 }
             }
-            for (Timetable timetable:saturdayTimeTable){
-                System.out.println("%s \t %s \t %d \t %.2f".formatted(timeTable.lesson.name,"Saturday",totalCustomer,GetAvgRating(timeTable.lesson.name)));
+            for (Timetable timeTable:saturdayTimeTable){
+                System.out.println("%s \t %s \t %d \t %.2f\t".formatted(timeTable.lesson.type,"Saturday",totalCustomer,GetAvgRating(timeTable.lesson.type)));
             }
-            for (Timetable timetable:saturdayTimeTable) {
-                System.out.println("%s \t %s \t %d \t %.2f".formatted(timeTable.lesson.name, "Sunday", totalCustomer, GetAvgRating(timeTable.lesson.name)));
+            for (Timetable timeTable:sundayTimeTable) {
+                System.out.println("%s \t %s \t %d \t %.2f".formatted(timeTable.lesson.type, "Sunday", totalCustomer, GetAvgRating(timeTable.lesson.type)));
             }
         }
 
     }
     public static double GetAvgRating(String lessonName){
         int totalRating = 0, count=0;
-        for (LessonRating rating: LessonRating.allRating){
-            if (Timetable.allTimetable.get(Booking.allBooking.get(rating.bookingId-1).timeTableId).lesson.name.equals(lessonName)){
+        for (LessonRatingReview rating: LessonRatingReview.allRating){
+            if (Timetable.allTimetables.get(Booking.allBooking.get(rating.bookingId-1).timeTableId).lesson.type.equals(lessonName)){
                 count++;
                 totalRating= totalRating+rating.rating;
             }

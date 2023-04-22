@@ -7,10 +7,11 @@ import java.util.Scanner;
 public class BookingManager {
     public static String BookingLesson(){
         int selectedTimetableId = GetSelectedTimetableId();
+        Customer.PreLoadedCustomer();
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter Customer Id");
+        System.out.println("Enter Customer Id Number:");
         int customerId = input.nextInt();
-        if (Timetable.allTimetable.get(selectedTimetableId-1).lesson.capacity!=0){
+        if (Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity!=0){
             int i = 0;
             for (;i<Booking.allBooking.size();i++){
                 if (Booking.allBooking.get(i).customerId==customerId){
@@ -22,7 +23,7 @@ public class BookingManager {
                 return "Your booking is not successful";
             }
             Booking.allBooking.add(new Booking(Booking.allBooking.size()+1,selectedTimetableId-1,customerId,"booked"));
-            Timetable.allTimetable.get(selectedTimetableId-1).lesson.capacity--;
+            Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity--;
             System.out.println("Your fitness lesson is booked successfully");
             return "Your fitness lesson is booked successfully";
         }else {
@@ -31,10 +32,10 @@ public class BookingManager {
         }
     }
     public static int GetSelectedTimetableId(){
-        System.out.println("Check your timetable");
-        System.out.println("1. According to the day");
-        System.out.println("2. According to the fitness type");
-        System.out.println("Select number 1 or 2");
+        System.out.println("Check your timetable:");
+        System.out.println("1. According to the day.");
+        System.out.println("2. According to the fitness type.");
+        System.out.println("Select Number 1 or 2:");
         Scanner input = new Scanner(System.in);
         int selected = input.nextInt();
         int selectedTimetableId=0;
@@ -46,18 +47,18 @@ public class BookingManager {
         return selectedTimetableId;
     }
     public static void ChangeCancleBooking(){
-        System.out.println("1. Change Yoour Booking");
-        System.out.println("2. Cancle Your Booking");
-        System.out.println("Select number 1 or 2");
+        System.out.println("1. Change Yoour Booking.");
+        System.out.println("2. Cancle Your Booking.");
+        System.out.println("Select Number 1 or 2:");
         Scanner input = new Scanner(System.in);
         int selected = input.nextInt();
         if (selected == 1){
-            Changebooking();
+            ChangeBooking();
         }else{
             CancleBooking();
         }
     }
-    public static void Changebooking(){
+    public static void ChangeBooking(){
         int bookingId = GetBookingId();
         int selectedTimetableId = GetSelectedTimetableId();
         Booking.allBooking.get(bookingId-1).timeTableId = selectedTimetableId;
@@ -66,7 +67,7 @@ public class BookingManager {
     public static void CancleBooking(){
         int bookingId = GetBookingId();
         Booking.allBooking.get(bookingId-1).status = "cancled";
-        Timetable.allTimetable.get(Booking.allBooking.get(bookingId-1).timeTableId).lesson.capacity++;
+        Timetable.allTimetables.get(Booking.allBooking.get(bookingId-1).timeTableId).lesson.capacity++;
         System.out.println("Your booking is canceled successfully");
     }
 
@@ -76,7 +77,7 @@ public class BookingManager {
         int customerId = input.nextInt();
         List<Booking>filteredBookings = new ArrayList<Booking>();
         for (Booking booking: Booking.allBooking){
-            if (booking.customerID ==customerId){
+            if (booking.customerId == customerId){
                 filteredBookings.add(booking);
             }
         }
@@ -85,12 +86,12 @@ public class BookingManager {
     }
     public static int ShowCustomerBookings(List<Booking>allBooking){
         Scanner input = new Scanner(System.in);
-        System.out.println("Booking Id \t Lesson \t Day");
+        System.out.println("BookingId\tLesson\tDay");
         for (Booking booking: allBooking){
-            Timetable timetable = Timetable.allTimetable.get(booking.timeTableId);
-            System.out.println("%d \t %s \t %s".formatted(booking.bookingId,timeTable.lesson.name,timeTable.lesson.day));
+            Timetable timeTable = Timetable.allTimetables.get(booking.timeTableId);
+            System.out.println("%d \t %s \t %s".formatted(booking.bookingId,timeTable.lesson.type,timeTable.lesson.day));
         }
-        System.out.println("Select your booking id");
+        System.out.println("Select Your Booking Id Number:");
         int selected = input.nextInt();
         return selected;
     }

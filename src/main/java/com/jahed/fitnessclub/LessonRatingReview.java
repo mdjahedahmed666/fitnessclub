@@ -3,8 +3,8 @@ package com.jahed.fitnessclub;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LessonRating {
+public class LessonRatingReview {
     public int bookingId,reviewId,rating;
     public String review;
-    public static List<LessonRating> allRating = new ArrayList<LessonRating>();
+    public static List<LessonRatingReview> allRating = new ArrayList<LessonRatingReview>();
 }
