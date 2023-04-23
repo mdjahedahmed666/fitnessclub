@@ -55,7 +55,7 @@ public class Timetable {
         String day = input.nextLine().toString();
         List<Timetable>filteredTimetable=new ArrayList<Timetable>();
         for (Timetable timetable:allTimetables){
-            if (timetable.lesson.day.toLowerCase().equals(day)){
+            if (timetable.lesson.day.toLowerCase().equals(day.toLowerCase())){
                 filteredTimetable.add(timetable);
             }
         }
@@ -67,7 +67,7 @@ public class Timetable {
         String type = input.nextLine().toString();
         List<Timetable>filteredTimetable=new ArrayList<Timetable>();
         for (Timetable timetable:allTimetables){
-            if (timetable.lesson.type.toLowerCase().equals(type)){
+            if (timetable.lesson.type.toLowerCase().equals(type.toLowerCase())){
                 filteredTimetable.add(timetable);
             }
         }

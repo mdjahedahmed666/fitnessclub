@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class BookingManager {
     public static String BookingLesson(){
         int selectedTimetableId = GetSelectedTimetableId();
-        Customer.PreLoadedCustomer();
         Scanner input = new Scanner(System.in);
+        Customer.DisplayCustomer();
         System.out.println("Enter Customer Id Number:");
         int customerId = input.nextInt();
         if (Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity!=0){

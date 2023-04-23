@@ -16,14 +16,16 @@ public class Fitnessclub {
 
     public static void main(String[] args) {
         Timetable.CreateTimeTable();
+        Customer.PreLoadedCustomer();
         while(true){
+            System.out.println("****Welcome to WFC****");
             System.out.println("1. Book a Lesson");
             System.out.println("2. Change or Cancle Booking");
-            System.out.println("3. Review and Rating");
+            System.out.println("3. ProvideReview and Rating");
             System.out.println("4. Lesson Report");
             System.out.println("5. Income Report");
             
-            System.out.println("Select a number:");
+            System.out.println("Select According to the number:");
             Scanner input = new Scanner (System.in);
             int selected = input.nextInt();
             
