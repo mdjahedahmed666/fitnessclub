@@ -30,7 +30,6 @@ public class Customer {
     }
     public static List<Customer> customerList =new ArrayList<Customer>();
     public static void PreLoadedCustomer(){
-//        System.out.println("PreLoaded Customers:");
         customerList.add(new Customer(1,"Jahed"));
         customerList.add(new Customer(2,"Jahid"));
         customerList.add(new Customer(3,"Jaher"));
@@ -42,6 +41,7 @@ public class Customer {
 
     }
     public static void DisplayCustomer(){
+        System.out.println("PreLoaded Customers:");
         System.out.println("\tId\tCustomerName");
         for (Customer customer:customerList){
             System.out.println("\t%d\t%s\n".formatted(customer.getCustomerId(),customer.getCustomerName()));

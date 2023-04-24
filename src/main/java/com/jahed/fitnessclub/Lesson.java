@@ -38,7 +38,7 @@ public class Lesson {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter month number 1 or 2");
         int month=input.nextInt();
-        System.out.println("Lesson\t day \tCustomer\tAvgRating\tReview");
+        System.out.println("Lesson\t day \tCustomer\tAvgRating");
         int totalCustomer=0;
         List<Timetable>saturdayTimeTable=new ArrayList<Timetable>();
         List<Timetable>sundayTimeTable=new ArrayList<Timetable>();
@@ -57,7 +57,7 @@ public class Lesson {
                 System.out.println("%s \t %s \t %d \t %.2f\t".formatted(timeTable.lesson.type,"Saturday",totalCustomer,GetAvgRating(timeTable.lesson.type)));
             }
             for (Timetable timeTable:sundayTimeTable) {
-                System.out.println("%s \t %s \t %d \t %.2f".formatted(timeTable.lesson.type, "Sunday", totalCustomer, GetAvgRating(timeTable.lesson.type)));
+                System.out.println("%s \t %s \t %d \t %.2f".formatted(timeTable.lesson.type,"Sunday", totalCustomer, GetAvgRating(timeTable.lesson.type)));
             }
         }
 
@@ -65,7 +65,7 @@ public class Lesson {
     public static double GetAvgRating(String lessonName){
         int totalRating = 0, count=0;
         for (LessonRatingReview rating: LessonRatingReview.allRating){
-            if (Timetable.allTimetables.get(Booking.allBooking.get(rating.bookingId-1).timeTableId).lesson.type.equals(lessonName)){
+            if (Timetable.allTimetables.get(Bookinglesson.allBooking.get(rating.bookingId-1).timeTableId).lesson.type.equals(lessonName)){
                 count++;
                 totalRating= totalRating+rating.rating;
             }

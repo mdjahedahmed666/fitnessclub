@@ -19,6 +19,7 @@ public class Fitnessclub {
         Customer.PreLoadedCustomer();
         while(true){
             System.out.println("****Welcome to WFC****");
+            System.out.println("Please choose an option");
             System.out.println("1. Book a Lesson");
             System.out.println("2. Change or Cancle Booking");
             System.out.println("3. ProvideReview and Rating");
@@ -63,7 +64,7 @@ public class Fitnessclub {
         lessonList.add("Spin");
         lessonList.add("Yoga");
         lessonList.add("Bodysculpt");
-//        lessonList.add("Aquacise");
+//      lessonList.add("Aquacise");
         lessonList.add("Zumba");
 
         Scanner input = new Scanner(System.in);
