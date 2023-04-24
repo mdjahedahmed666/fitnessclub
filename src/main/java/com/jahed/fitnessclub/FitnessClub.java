@@ -4,15 +4,13 @@
 
 package com.jahed.fitnessclub;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
  *
  * @author mdjahedmiah
  */
-public class Fitnessclub {
+public class FitnessClub {
 
     public static void main(String[] args) {
         Timetable.CreateTimeTable();
@@ -47,7 +45,7 @@ public class Fitnessclub {
                 MonthlyIncomeReport.IncomeReport();
                 break;
             default:
-                System.out.println("You have entered wrong number. Please enter number between 1 to 5");
+                System.out.println("You have entered wrong number. Please enter number between 1 to 5.");
                 break;
         }
 

@@ -10,7 +10,6 @@ public class MonthlyIncomeReport {
         lessonList.add("Spin");
         lessonList.add("Yoga");
         lessonList.add("Bodysculpt");
-//      lessonList.add("Aquacise");
         lessonList.add("Zumba");
 
         Scanner input = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class MonthlyIncomeReport {
             double netIncome = 0;
             for (Timetable timetable: Timetable.allTimetables){
                 if (timetable.month == month && timetable.lesson.type == type){
-                    netIncome = (5-timetable.lesson.capacity)*timetable.lesson.price + netIncome;
+                    netIncome = (5-timetable.lesson.maxCapacity)*timetable.lesson.price + netIncome;
                 }
             }
             System.out.println("%s\t%.2f".formatted(type,netIncome));

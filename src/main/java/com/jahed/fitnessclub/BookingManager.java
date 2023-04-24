@@ -11,7 +11,7 @@ public class BookingManager {
         Customer.DisplayCustomer();
         System.out.println("Enter Customer Id Number:");
         int customerId = input.nextInt();
-        if (Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity!=0){
+        if (Timetable.allTimetables.get(selectedTimetableId-1).lesson.maxCapacity !=0){
             int i = 0;
             for (; i< LessonBooking.allBooking.size(); i++){
                 if (LessonBooking.allBooking.get(i).customerId==customerId){
@@ -23,7 +23,7 @@ public class BookingManager {
                 return "Your booking is not successful";
             }
             LessonBooking.allBooking.add(new LessonBooking(LessonBooking.allBooking.size()+1,selectedTimetableId-1,customerId,"booked"));
-            Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity--;
+            Timetable.allTimetables.get(selectedTimetableId-1).lesson.maxCapacity--;
             System.out.println("Your fitness lesson is booked successfully");
             return "Your fitness lesson is booked successfully";
         }else {
@@ -60,7 +60,7 @@ public class BookingManager {
         }else{
             int bookingId = GetBookingId();
             LessonBooking.allBooking.get(bookingId-1).status = "cancled";
-            Timetable.allTimetables.get(LessonBooking.allBooking.get(bookingId-1).timeTableId).lesson.capacity++;
+            Timetable.allTimetables.get(LessonBooking.allBooking.get(bookingId-1).timeTableId).lesson.maxCapacity++;
             System.out.println("Your booking is canceled successfully");
         }
     }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Lesson {
-    int capacity;
+    int maxCapacity;
     public String type,day;
     public double price;
 
@@ -13,7 +13,7 @@ public class Lesson {
         this.type=type;
         this.day=day;
         this.price=price;
-        this.capacity=5;
+        this.maxCapacity =5;
     }
 
     public static void LessonReport(){
@@ -22,7 +22,6 @@ public class Lesson {
         lessonList.add("Yoga");
         lessonList.add("Zumba");
         lessonList.add("Bodysculpt");
-
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter month number 1 or 2");
@@ -34,7 +33,7 @@ public class Lesson {
         for (String type: lessonList){
             for (Timetable timeTable: Timetable.allTimetables){
                 if(timeTable.month==month && timeTable.lesson.type.equals(type)){
-                    totalCustomer=5-timeTable.lesson.capacity+totalCustomer;
+                    totalCustomer=5-timeTable.lesson.maxCapacity +totalCustomer;
                     if (timeTable.lesson.day == "Saturday") {
                         saturdayTimeTable.add(timeTable);
                     }else {
