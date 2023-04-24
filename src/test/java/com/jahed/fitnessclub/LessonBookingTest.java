@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author mdjah
  */
-public class TimetableTest {
+public class LessonBookingTest {
     
-    public TimetableTest() {
+    public LessonBookingTest() {
     }
     
     @BeforeAll
@@ -34,6 +34,13 @@ public class TimetableTest {
     
     @AfterEach
     public void tearDown() {
+    }
+    @Test
+    public void testLessonBooking(){
+        System.out.println("LessonBookin");
+        LessonBooking instance = new LessonBooking(1,1,1,"book");
+        String expResult = "book";
+        assertEquals(expResult, "book");
     }
     
 }

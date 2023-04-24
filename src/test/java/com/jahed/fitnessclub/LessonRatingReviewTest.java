@@ -35,5 +35,11 @@ public class LessonRatingReviewTest {
     @AfterEach
     public void tearDown() {
     }
+    @Test
+    public void testLessonRatingReview(){
+        System.out.println("ReviewAndRating");
+        LessonRatingReview.testLessonRatingReview(1,1,1,"well");
+        assertEquals(1,LessonRatingReview.allRating.size());
+    }
     
 }

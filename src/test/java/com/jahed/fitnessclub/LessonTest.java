@@ -35,5 +35,12 @@ public class LessonTest {
     @AfterEach
     public void tearDown() {
     }
+    @Test
+    public void testGetAvgRating(){
+        System.out.println("GetAvgRating");
+        double expResult = 0.0;
+        double result = Lesson.GetAvgRating("Spin");
+        assertEquals(expResult,result);
+    }
     
 }

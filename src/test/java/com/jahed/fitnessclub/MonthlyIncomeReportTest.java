@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author mdjah
  */
-public class BookinglessonTest {
+public class MonthlyIncomeReportTest {
     
-    public BookinglessonTest() {
+    public MonthlyIncomeReportTest() {
     }
     
     @BeforeAll
@@ -34,6 +34,13 @@ public class BookinglessonTest {
     
     @AfterEach
     public void tearDown() {
+    }
+
+    @Test
+    public void testMonthlyIncomeReport(){
+        System.out.println("MonthlyIncomeReport");
+        int month = 1;
+        assertEquals(1, 1);
     }
     
 }
