@@ -15,18 +15,7 @@ public class Lesson {
         this.price=price;
         this.capacity=5;
     }
-    public static void ReviewRating(){
-        Scanner input = new Scanner(System.in);
-        int bookingId = BookingManager.GetBookingId();
-        LessonRatingReview lessonRating = new LessonRatingReview();
-        System.out.println("Enter Your Review");
-        lessonRating.review = input.nextLine();
-        System.out.println("Rate the Lesson from 1 to 5");
-        lessonRating.rating = input.nextInt();
-        lessonRating.bookingId=bookingId;
-        lessonRating.reviewId= LessonRatingReview.allRating.size()+1;
-        lessonRating.allRating.add(lessonRating);
-    }
+
     public static void LessonReport(){
         List<String>lessonList=new ArrayList<String>();
         lessonList.add("Spin");
@@ -65,7 +54,7 @@ public class Lesson {
     public static double GetAvgRating(String lessonName){
         int totalRating = 0, count=0;
         for (LessonRatingReview rating: LessonRatingReview.allRating){
-            if (Timetable.allTimetables.get(Bookinglesson.allBooking.get(rating.bookingId-1).timeTableId).lesson.type.equals(lessonName)){
+            if (Timetable.allTimetables.get(LessonBooking.allBooking.get(rating.bookingId-1).timeTableId).lesson.type.equals(lessonName)){
                 count++;
                 totalRating= totalRating+rating.rating;
             }

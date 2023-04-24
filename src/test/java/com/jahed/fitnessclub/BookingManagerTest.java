@@ -35,5 +35,10 @@ public class BookingManagerTest {
     @AfterEach
     public void tearDown() {
     }
+//    @Test
+//    public void testBookinglesson(){
+//        System.out.println("Bookinglesson");
+//        assertEquals("Lesson is booked successfully",BookingManager.testBookinglesson(1,1,1));
+//    }
     
 }

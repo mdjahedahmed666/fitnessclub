@@ -13,16 +13,16 @@ public class BookingManager {
         int customerId = input.nextInt();
         if (Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity!=0){
             int i = 0;
-            for (;i<Bookinglesson.allBooking.size();i++){
-                if (Bookinglesson.allBooking.get(i).customerId==customerId){
+            for (; i< LessonBooking.allBooking.size(); i++){
+                if (LessonBooking.allBooking.get(i).customerId==customerId){
                     break;
                 }
             }
-            if (Bookinglesson.allBooking.size()!=0 && i<Bookinglesson.allBooking.size()){
+            if (LessonBooking.allBooking.size()!=0 && i< LessonBooking.allBooking.size()){
                 System.out.println("Your booking is not successful");
                 return "Your booking is not successful";
             }
-            Bookinglesson.allBooking.add(new Bookinglesson(Bookinglesson.allBooking.size()+1,selectedTimetableId-1,customerId,"booked"));
+            LessonBooking.allBooking.add(new LessonBooking(LessonBooking.allBooking.size()+1,selectedTimetableId-1,customerId,"booked"));
             Timetable.allTimetables.get(selectedTimetableId-1).lesson.capacity--;
             System.out.println("Your fitness lesson is booked successfully");
             return "Your fitness lesson is booked successfully";
@@ -53,30 +53,24 @@ public class BookingManager {
         Scanner input = new Scanner(System.in);
         int selected = input.nextInt();
         if (selected == 1){
-            ChangeBooking();
+            int bookingId = GetBookingId();
+            int selectedTimetableId = SelectedTimetableId();
+            LessonBooking.allBooking.get(bookingId-1).timeTableId = selectedTimetableId;
+            System.out.println("Your booking is updated successfully");
         }else{
-            CancleBooking();
+            int bookingId = GetBookingId();
+            LessonBooking.allBooking.get(bookingId-1).status = "cancled";
+            Timetable.allTimetables.get(LessonBooking.allBooking.get(bookingId-1).timeTableId).lesson.capacity++;
+            System.out.println("Your booking is canceled successfully");
         }
-    }
-    public static void ChangeBooking(){
-        int bookingId = GetBookingId();
-        int selectedTimetableId = SelectedTimetableId();
-        Bookinglesson.allBooking.get(bookingId-1).timeTableId = selectedTimetableId;
-        System.out.println("Your booking is updated successfully");
-    }
-    public static void CancleBooking(){
-        int bookingId = GetBookingId();
-        Bookinglesson.allBooking.get(bookingId-1).status = "cancled";
-        Timetable.allTimetables.get(Bookinglesson.allBooking.get(bookingId-1).timeTableId).lesson.capacity++;
-        System.out.println("Your booking is canceled successfully");
     }
 
     public static int GetBookingId(){
-        System.out.println("Enter your customer id");
+        System.out.println("Enter Your Customer Id:");
         Scanner input = new Scanner(System.in);
         int customerId = input.nextInt();
-        List<Bookinglesson>filteredBookings = new ArrayList<Bookinglesson>();
-        for (Bookinglesson booking: Bookinglesson.allBooking){
+        List<LessonBooking>filteredBookings = new ArrayList<LessonBooking>();
+        for (LessonBooking booking: LessonBooking.allBooking){
             if (booking.customerId == customerId){
                 filteredBookings.add(booking);
             }
@@ -84,10 +78,10 @@ public class BookingManager {
         int bookingId = ShowCustomerBookings(filteredBookings);
         return bookingId;
     }
-    public static int ShowCustomerBookings(List<Bookinglesson>allBooking){
+    public static int ShowCustomerBookings(List<LessonBooking>allBooking){
         Scanner input = new Scanner(System.in);
         System.out.println("BookingId\tLesson\tDay");
-        for (Bookinglesson booking: allBooking){
+        for (LessonBooking booking: allBooking){
             Timetable timeTable = Timetable.allTimetables.get(booking.timeTableId);
             System.out.println("%d \t %s \t %s".formatted(booking.bookingId,timeTable.lesson.type,timeTable.lesson.day));
         }
